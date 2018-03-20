@@ -1,0 +1,22 @@
+{
+  "name": "fabelio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "abdurrahman sami",
+  "license": "ISC",
+  "dependencies": {
+    "async-mysql": "^1.0.1",
+    "aws-sdk": "^2.211.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "fast-csv": "^2.4.1",
+    "fs": "0.0.1-security",
+    "mysql": "^2.15.0",
+    "read-csv-json": "^1.1.0",
+    "scp2": "^0.5.0"
+  }
+}

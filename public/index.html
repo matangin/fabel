@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload Form</title>
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        function submitForm() {
+            $('#hasil').html("");
+            $.ajax({
+              url: "/result",
+              type: "POST",
+              data: $("#data").serialize(),
+            }).done(function( data ) {
+            	console.log(data);
+			   $.each( data, function( i, item ) {
+			        setTimeout(function () {
+			            $('#hasil').append("<b>"+item+"<b><br>");
+			        }, i * 3000);
+			    });
+            });
+            return false;
+        }
+
+
+    </script>
+</head>
+
+<body>
+<div>
+<div style="float:left; width:60%">	
+<form id="data" action="/result" enctype="multipart/form-data" method="post" onsubmit="return submitForm();">
+  <fieldset>
+    <legend>S3 Credentials</legend>
+    Bucket:<br>
+    <input type="text" name="s3_bucket" value="fabel"><br>
+    Access Key:<br>
+    <input type="text" name="s3_access_key" value="AKIAIJM2FJBHZ3AVCBHQ"><br>
+    Secret Key:<br>
+    <input type="text" name="s3_secret_key" value="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"><br>
+    CSV File name (checks not necessary):<br>
+    <input type="text" name="s3_csv_file" value="location.csv"><br>
+    Column Name:<br>
+    <input type="text" name="s3_column" value="loc1"><br>    
+  </fieldset>
+
+  <fieldset>
+    <legend>MySQL Credentials (Build the query to get data from the mentioned column)</legend>
+    Host:<br>
+    <input type="text" name="mysql_host" value="128.199.38.34"><br>
+    Port:<br>
+    <input type="text" name="mysql_port" value="3306"><br>
+    Username:<br>
+    <input type="text" name="mysql_username" value="myuser"><br>
+    Password<br>
+    <input type="text" name="mysql_password" value="mypass"><br>
+    Database:<br>
+    <input type="text" name="mysql_database" value="fabel"><br> 
+    Table:<br>
+    <input type="text" name="mysql_table" value="location"><br> 
+    Column Name:<br>
+    <input type="text" name="mysql_column" value="loc1"><br> 
+  </fieldset>
+
+  <fieldset>
+    <legend>SCP Credentials (Assume file is in the home folder of user)</legend>
+    Host:<br>
+    <input type="text" name="scp_host" value="167.99.79.230"><br>
+    Username:<br>
+    <input type="text" name="scp_username" value="root"><br>
+    Password<br>
+    <input type="text" name="scp_password" value="fabel1234"><br>
+    CSV File name (checks not necessary):<br>
+    <input type="text" name="scp_csv_file" value="/home/location.csv"><br> 
+    Column Name:<br>
+    <input type="text" name="scp_column" value="loc1"><br> 
+  </fieldset>
+</div>
+<div style="float:left; width:40%">
+  <fieldset>
+    <legend>Submit & Result</legend>
+	<button>Submit</button>
+    <br>
+    <span>Result :</span>
+    <br>
+        <div id="hasil">    
+                <!-- EMPTY div -->
+        </div>
+  </fieldset>
+
+</div>
+</form>
+
+</div>
+
+</body>
+
+</html>		
